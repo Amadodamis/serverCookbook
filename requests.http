@@ -1,0 +1,50 @@
+POST http://localhost:3001/api/recetas HTTP/1.1
+content-type: application/json
+
+{
+    "receta":"CALDO DE VERDURA",
+    "sector":"COCINA",
+    "apto":["NO VEGANO","CELIACO"],
+    "tipo":"CALDO",
+    "porciones":"4",
+    "procedimiento":"LOREM LOREM LOREM LOREM LOREM",
+    "ingredientes":[
+        {"ingrediente":"PUERRO","cantidad":"2","unidad":"UNIDADES"},
+        {"ingrediente":"ZANAHORIA","cantidad":"3","unidad":"UNIDADES"},
+        {"ingrediente":"CEBOLLA","cantidad":"3","unidad":"UNIDADES"},
+        {"ingrediente":"LAUREL","cantidad":"3","unidad":"UNIDADES"},
+        {"ingrediente":"AGUA","cantidad":"2","unidad":"Lt"}
+        ]
+}
+
+###
+GET http://localhost:3001/api/recetas HTTP/1.1
+
+###
+GET http://localhost:3001/api/recetas/63fd317a0e77370f7ceadd3a HTTP/1.1
+
+###
+PUT  http://localhost:3001/api/recetas/ACA VA EL ID HTTP/1.1
+content-type: application/json
+
+{
+    "receta":"SALSA 4 QUESOS",
+    "sector":"COCINA",
+    "apto":["NO VEGANO","CELIACO"],
+    "tipo":"SALSA",
+    "porciones":"4",
+    "procedimiento":"LOREM LOREM LOREM LOREM LOREM",
+    "ingredientes":[
+        {"ingrediente": "QUESO PARMESANO","cantidad": "500","unidad": "gr"},
+        {"ingrediente": "ROQUEFORT","cantidad": "200","unidad": "gr"},
+        {"ingrediente": "QUESO DAMBO","cantidad":"3","unidad":"gr"},
+        {"ingrediente": "QUESO CHEDDAR","cantidad": "200", "unidad": "gr"},
+        {"ingrediente": "LECHE","cantidad": "700","unidad":"Lt"},
+        {"ingrediente": "MANTECA", "cantidad": "70","unidad":"gr"},
+        {"ingrediente": "HARINA 000","cantidad": "70","unidad": "gr"}
+        ]
+}
+
+
+###
+DELETE http://localhost:3001/api/recetas/ ACA VA EL ID HTTP/1.1
