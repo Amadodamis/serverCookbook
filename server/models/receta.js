@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 
 const recetaSchema = mongoose.Schema(
     {
-        receta: { type: String, unique: true, required: true },
-        sector: { type: String, required: true },
+        receta: { type: String, unique: true },
+        sector: { type: String},
         apto: [String],
-        tipo: { type: String, required: true },
-        porciones: { type: String, required: true },
+        tipo: { type: String },
+        porciones: { type: String},
         procedimiento: { type: String },
         ingredientes: [
             {

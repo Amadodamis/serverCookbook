@@ -18,7 +18,7 @@ router.post("/recetas", (req, res) => {
 
 router.get("/recetas", (req, res) => {
     recetaSchema
-        .find()
+        .find().sort({receta:1})
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 })
