@@ -18,10 +18,18 @@ router.post("/recetas", (req, res) => {
 
 router.get("/recetas", (req, res) => {
     recetaSchema
-        .find().sort({receta:1})
+        .find().sort({ receta: 1 })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 })
+
+router.get("/recetasF", (req, res) => {
+    recetaSchema
+        .find().sort({ receta: -1 })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }))
+})
+
 
 
 //DEVUELVA UNA RECETA POR EL ID
@@ -33,6 +41,23 @@ router.get("/recetas/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 })
+
+
+
+//DEVUELVA UNA RECETA POR EL ID
+router.get("/recetas/filter/:filter", (req, res) => {
+    
+    const { filter } = req.params;
+    console.log(filter)
+
+
+    recetaSchema
+        .find().sort({ receta: -1 })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }))
+})
+
+
 
 
 //ACTUALIZA UNA RECETA
