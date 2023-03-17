@@ -1,8 +1,10 @@
 const express = require("express")
 const recetaSchema = require("../models/receta")
 
-
 const router = express.Router()
+
+const getValores = require("../middlewares/getValores")
+const parseValores = require("../middlewares/parseValores")
 
 //CREAR RECETA
 
@@ -23,13 +25,6 @@ router.get("/recetas", (req, res) => {
         .catch((error) => res.json({ message: error }))
 })
 
-router.get("/recetasF", (req, res) => {
-    recetaSchema
-        .find().sort({ receta: -1 })
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }))
-})
-
 
 
 //DEVUELVA UNA RECETA POR EL ID
@@ -44,20 +39,16 @@ router.get("/recetas/:id", (req, res) => {
 
 
 
-//DEVUELVA UNA RECETA POR EL ID
-router.get("/recetas/filter/:filter", (req, res) => {
-    
-    const { filter } = req.params;
-    console.log(filter)
+//DEVUELVE LAS RECETAS CON FILTROS
+router.get("/recetas/filter/:filter", getValores, parseValores, (req, res) => {
 
+    let filter = res.locals.filter
 
     recetaSchema
-        .find().sort({ receta: -1 })
+        .find(filter)
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 })
-
-
 
 
 //ACTUALIZA UNA RECETA
