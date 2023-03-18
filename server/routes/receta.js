@@ -5,6 +5,7 @@ const router = express.Router()
 
 const getValores = require("../middlewares/getValores")
 const parseValores = require("../middlewares/parseValores")
+const getValoresIds = require("../middlewares/getValoresIds")
 
 //CREAR RECETA
 
@@ -16,7 +17,7 @@ router.post("/recetas", (req, res) => {
         .catch((error) => res.json({ message: error }))
 })
 
-//DEVUELVE TODAS LAS RECETAS
+//DEVUELVE TODAS LAS RECETAS ORDENADAS POR NOMBRE
 
 router.get("/recetas", (req, res) => {
     recetaSchema
@@ -49,6 +50,21 @@ router.get("/recetas/filter/:filter", getValores, parseValores, (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 })
+
+
+
+
+//DEVUELVE TANTAS RECETAS COMO IDS SE LE ENVIEN
+router.get("/recetas/filterId/:filterId", getValoresIds, (req, res) => {
+    let filter = res.locals.filterId
+    //{"_id" : {"$in" :filter }}
+
+    recetaSchema
+        .find({ "_id": { "$in": filter } })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }))
+})
+
 
 
 //ACTUALIZA UNA RECETA
